@@ -1,0 +1,16 @@
+{
+  "name": "simple-product",
+  "description": "Simple product designed to show some real life tests",
+  "main": "simple-product.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.6.1"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "iron-test-helpers": "PolymerElements/iron-test-helpers#^1.2.5",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
+    "iron-test-helpers": "^1.2.5"
+  }
+}

@@ -1,0 +1,111 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`simple-product`
+Simple product designed to show some real life tests
+
+@demo demo/index.html
+-->
+
+<dom-module id="simple-product">
+  <template>
+    <style>
+    /* ------------------------ */
+    /* global styles */
+    /* ------------------------ */
+    :host {
+      font-family: GillSans;
+      font-size: 14px;
+      text-align: left;
+    }
+    a {
+      color: #000000;
+      text-decoration: none
+    }
+    .brand-name {
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      line-height: 20px;
+    }
+    .product-info {
+      overflow: hidden;
+      margin-bottom: 5px;
+      margin-top: auto;
+    }
+    .product-description {
+      width: 250px
+    }
+
+    </style>
+    <a href="[[href]]">
+      <img id="product-image"
+        src="[[product.image.primary]]"
+        primary-src="[[product.image.primary]]"
+        secondary-src="[[product.image.secondary]]"
+        alt="[[product.brand.name]] - [[product.name]]"
+        on-mouseover="_showSecondaryImage"
+        on-mouseout="_showPrimaryImage"
+        />
+      <p class="brand-name">[[product.brand.name]]</p>
+      <p class="product-description">[[product.name]]</p>
+      <p class="price">[[price]]</p>
+    </a>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'simple-product',
+      properties: {
+        product: Object,
+        price: {
+          type: String,
+          computed: '_computeLocalisedPrice(product.price, product.locale)'
+        },
+        href: {
+          type: String,
+          computed: '_computeSeoFriendlyLink(product.locale, product.brand.key, product.key, product.id)'
+        }
+      },
+
+      /**
+       * Localised price string
+       * @param {Object} price - price object include ammount and currency
+       * @param {String} locale - A string with a BCP 47 language tag
+       * @return {string} price - localised price as a string
+       */
+      _computeLocalisedPrice: (price, locale) => {
+        return price.amount.toLocaleString(locale, { style: 'currency', currency: price.currency })
+      },
+
+      /**
+       * Generage SEO friendly link for href
+       * @param {String} locale - A string with a BCP 47 language tag
+       * @param {String} brandKey - The SEO friendly brand identifer
+       * @param {String} productKey - The SEO friendly product name
+       * @param {String} id - The product idenifier
+       * @return {string} link - SEO friendly link
+       */
+      _computeSeoFriendlyLink: (locale, brandKey, productKey, id) => {
+        return `/${locale}/product/${brandKey}/${productKey}/${id}`
+      },
+
+      /**
+       * Change image src to primary image
+       * @param {Object} event - The mouse out event
+       */
+      _showPrimaryImage: (event) => {
+        event.target.src = event.target.primarySrc;
+      },
+
+      /**
+       * Change image src to secondary image
+       * @param {Object} event - The mouse over event
+       */
+      _showSecondaryImage: (event) => {
+        event.target.src = event.target.secondarySrc;
+      }
+
+
+    });
+  </script>
+</dom-module>

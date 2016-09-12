@@ -1,0 +1,76 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>simple-product test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../simple-product.html">
+  </head>
+  <body>
+
+    <test-fixture id="basic">
+      <template>
+        <simple-product product='
+          {
+            "locale": "en-GB",
+            "name":"Poppy off-the-shoulder embroidered cotton-poplin dress",
+            "key": "poppy-off-the-shoulder-embroidered-cotton-poplin-dress",
+            "price":{
+              "currency":"GBP",
+              "amount":1545
+            },
+            "brand":{
+              "name":"loveshackfancy",
+              "key":"loveshackfancy"
+            },
+            "id":594952,
+            "image": {
+              "primary" : "//cache.net-a-porter.com/images/products/756326/756326_in_sl.jpg",
+              "secondary" : "//cache.net-a-porter.com/images/products/756326/756326_ou_sl.jpg"
+            }
+          }
+        '></simple-product>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('simple-product - component tests', () => {
+
+        var element;
+
+        suiteSetup( (done) => {
+          elementHTML = element.outerHTML;
+          getStructuredData
+        });
+
+        setup( () => {
+          element = fixture('basic');
+        });
+
+        test('instantiating the element works', () => {
+          assert.equal(element.is, 'simple-product');
+        });
+
+        //going rewrite wct proxy
+
+        // fetch('https://crossorigin.me/https://search.google.com/structured-data/testing-tool/validate', {
+        //   method: 'POST',
+        //   mode: 'cors',
+        //   body: new FormData({html:"hello"}),
+        //   headers: new Headers({
+		    //       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+	      //   })
+        // }).then( (data) => {
+        //   console.log(data)
+        // }).catch( (error) => {
+        //   console.log(error.body)
+        // });
+
+      });
+    </script>
+  </body>
+</html>

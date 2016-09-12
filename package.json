@@ -1,0 +1,15 @@
+{
+  "name": "simple-product",
+  "description": "Install build dependancies",
+  "private": true,
+  "devDependencies": {
+    "polylint": "^2.10.1",
+    "web-component-tester": "^4.3.4"
+  },
+  "scripts": {
+    "lint": "./node_modules/.bin/polylint simple-product.html",
+    "test": "./node_modules/.bin/wct --plugin local",
+    "test:sauce": "./node_modules/.bin/wct --plugin sauce",
+    "start": "polymer serve"
+  }
+}

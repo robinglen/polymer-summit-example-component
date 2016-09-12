@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <title>simple-product demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../simple-product.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic simple-product Demo</h3>
+      <demo-snippet>
+        <template>
+          <simple-product product='
+            {
+              "locale": "en-GB",
+              "name":"Poppy off-the-shoulder embroidered cotton-poplin dress",
+              "key": "poppy-off-the-shoulder-embroidered-cotton-poplin-dress",
+              "price":{
+                "currency":"GBP",
+                "amount":1545
+              },
+              "brand":{
+                "name":"loveshackfancy",
+                "key":"loveshackfancy"
+              },
+              "id":594952,
+              "image": {
+                "primary" : "//cache.net-a-porter.com/images/products/756326/756326_in_sl.jpg",
+                "secondary" : "//cache.net-a-porter.com/images/products/756326/756326_ou_sl.jpg"
+              }
+            }
+          '></simple-product>
+        </demo-snippet>
+      </template>
+
+    </div>
+
+  </body>
+</html>
