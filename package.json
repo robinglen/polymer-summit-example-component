@@ -9,7 +9,8 @@
   },
   "scripts": {
     "lint": "./node_modules/.bin/polylint simple-product.html",
-    "test": "./node_modules/.bin/wct --plugin local",
+    "test": "npm run lint && npm run test:local",
+    "test:local": "./node_modules/.bin/wct --plugin local",
     "test:sauce": "./node_modules/.bin/wct --plugin sauce",
     "start": "polymer serve"
   }
