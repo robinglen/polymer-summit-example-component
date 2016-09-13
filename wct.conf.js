@@ -1,9 +1,7 @@
-const napCoreSauceLabsConfig = [];
 const structuredDataProxy = require('wct-structured-data-testing');
 
 module.exports = {
   plugins: {
-    sauce: napCoreSauceLabsConfig,
     local: {
       disabled: true,
       browsers: ['chrome']
