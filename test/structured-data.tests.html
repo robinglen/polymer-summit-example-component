@@ -1,0 +1,102 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>simple-product test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../simple-product.html">
+</head>
+
+<body>
+
+    <test-fixture id="basic">
+        <template>
+            <simple-product product='
+          {
+            "locale": "en-GB",
+            "name":"Poppy off-the-shoulder embroidered cotton-poplin dress",
+            "key": "poppy-off-the-shoulder-embroidered-cotton-poplin-dress",
+            "price":{
+              "currency":"GBP",
+              "amount":1545
+            },
+            "brand":{
+              "name":"loveshackfancy",
+              "key":"loveshackfancy"
+            },
+            "id":594952,
+            "image": {
+              "primary" : "//cache.net-a-porter.com/images/products/756326/756326_in_sl.jpg",
+              "secondary" : "//cache.net-a-porter.com/images/products/756326/756326_ou_sl.jpg"
+            }
+          }
+        '></simple-product>
+        </template>
+    </test-fixture>
+
+    <script>
+        suite('simple-product - component tests', () => {
+
+             var errors, type, product, brand, price;
+
+            suiteSetup((done) => {
+                var elementHTML = fixture('basic').outerHTML;
+                getStructuredData(elementHTML, function(error, response) {
+                    if (error) {
+                        assert.isOk(false, 'Structured data API didn\'t failed');
+                    } else {
+                           errors = response.errors;
+                           type = response.tripleGroups[0].type;
+                           product = response.tripleGroups[0].nodes[0];
+                           brand = product.nodeProperties[0];
+                           price = product.nodeProperties[1];
+                    }
+                    done();
+                });
+            });
+
+            test('No errors in the structured data', function() {
+                assert.equal(errors, 0);
+            });
+
+            test('Recognised as a product', function() {
+                assert.equal(type, 'Product');
+            });
+
+            test('It has the correct product name', function() {
+                assert.equal(product.properties[0].pred, 'name');
+                assert.equal(product.properties[0].value, 'Poppy off-the-shoulder embroidered cotton-poplin dress');
+            });
+
+        });
+
+        /**
+        * Helper function to pass HTML to proxy API for google structured data tool
+          <https://developers.google.com/structured-data/testing-tool/>
+        */
+        function getStructuredData(elementHTML, callback) {
+            var request = new XMLHttpRequest();
+            request.open('POST', '/_structured_data_proxy_');
+            request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+
+            request.onload = function(e) {
+                if (request.status == 200) {
+                    var data = JSON.parse(request.response);
+                    callback(null, data);
+                } else {
+                    callback('error');
+                }
+            }
+            request.send(JSON.stringify({
+                html: elementHTML
+            }));
+        }
+    </script>
+</body>
+
+</html>

@@ -10,9 +10,6 @@ Simple product designed to show some real life tests
 <dom-module id="simple-product">
   <template>
     <style>
-    /* ------------------------ */
-    /* global styles */
-    /* ------------------------ */
     :host {
       font-family: GillSans;
       font-size: 14px;
@@ -47,7 +44,7 @@ Simple product designed to show some real life tests
         on-mouseout="_showPrimaryImage"
         />
       <p class="brand-name">[[product.brand.name]]</p>
-      <p class="product-description">[[product.name]]</p>
+      <p class="product-description" itemprop="name">[[product.name]]</p>
       <p class="price">[[price]]</p>
     </a>
   </template>
@@ -56,15 +53,23 @@ Simple product designed to show some real life tests
     Polymer({
       is: 'simple-product',
       properties: {
+        // Product object matching our product API schema
         product: Object,
+        // Localised price
         price: {
           type: String,
           computed: '_computeLocalisedPrice(product.price, product.locale)'
         },
+        // Link to the product details
         href: {
           type: String,
           computed: '_computeSeoFriendlyLink(product.locale, product.brand.key, product.key, product.id)'
         }
+      },
+      // Wrapping product attribute around the host
+      hostAttributes: {
+        itemtype: 'http://schema.org/Product',
+        itemscope: true
       },
 
       /**

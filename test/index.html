@@ -20,12 +20,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script>
       // Load and run all tests (.html, .js):
       WCT.loadSuites([
+        'unit-tests.html',
+        'unit-tests.html?dom=shadow',
         'component-tests.html',
         'component-tests.html?dom=shadow',
-        'unit-tests.html',
-        'unit-tests.html?dom=shadow'
         // We only run structured data tests in shady as we are just checking structure
-        // 'structured-data-test.html'
+        'structured-data.tests.html'
       ]);
     </script>
   </body>
