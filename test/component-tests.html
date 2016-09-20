@@ -49,15 +49,16 @@
         setup( () => {
           element = fixture('basic');
         });
+
         test('instantiating the element works', () => {
           assert.equal(element.is, 'simple-product');
         });
 
-        test('product brand name is collect', () => {
-          assert.equal(element.$$('.brand-name').textContent, 'loveshackfancy');
+        test('product price is correct', () => {
+          assert.equal(element.$$('.price').textContent, '£1,545.00');
           /*
            * Why do the above instead of:
-           * assert.equal(element.querySelector('.brand-name'), 'loveshackfancy');
+           * assert.equal(element.querySelector('.price'), '£1,545.00');
            * querySelector will not work when using shadow DOM
            */
         });
