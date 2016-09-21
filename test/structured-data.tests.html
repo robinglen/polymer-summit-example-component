@@ -48,7 +48,7 @@
                 var elementHTML = fixture('basic').outerHTML;
                 getStructuredData(elementHTML, function(error, response) {
                     if (error) {
-                        assert.isOk(false, 'Structured data API didn\'t failed');
+                        assert.isOk(false, 'Structured data API failed');
                     } else {
                            errors = response.errors;
                            type = response.tripleGroups[0].type;
