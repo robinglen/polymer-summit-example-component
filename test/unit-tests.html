@@ -51,15 +51,15 @@
             currency: "GBP",
             amount: 1545
           }, 'en-GB');
-          assert.equal(localisedPrice, '£1,545.00')
+          assert.equal(localisedPrice, '£1,545.00');
         });
 
         test('localised price is correct for en-US in USD', () => {
           const localisedPrice = element._computeLocalisedPrice({
             currency: "USD",
-            amount: 1545
+            amount: 2580
           }, 'en-US');
-          assert.equal(localisedPrice, '$1,545.00')
+          assert.equal(localisedPrice, '$2,580.00');
         });
 
         test('generated SEO friendly link is correct', () => {
