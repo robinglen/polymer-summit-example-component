@@ -42,9 +42,10 @@
     <script>
         suite('simple-product - component tests', () => {
 
-             var errors, type, product, brand, price;
+            var errors, type, product, brand, price;
 
-            suiteSetup((done) => {
+            suiteSetup(done => {
+                // collect HTML
                 var elementHTML = fixture('basic').outerHTML;
                 getStructuredData(elementHTML, function(error, response) {
                     if (error) {
