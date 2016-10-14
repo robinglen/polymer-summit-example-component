@@ -3,6 +3,8 @@ An example simple product component to show our testing principles.
 
 Similar to `<nap-product-summary>` but with a lot of the features removed.
 
+Using a bunch of ES6 so to be save run in Chrome.
+
 # Setting up
 Requries Polymer CLI to serve.
 
@@ -41,6 +43,6 @@ Designed to test the component has been rendered correctly and it behaves as exp
 ### Structured data tests
 
 Test whether the component complies with Schema.org structured data standards.
- 
+
 
 Built with Polymer CLI.
